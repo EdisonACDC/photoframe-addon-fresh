@@ -1,0 +1,1 @@
+# PhotoFrame Add-on\n\nDigital photo frame with slideshow for Home Assistant.\n\nSee https://github.com/EdisonACDC/photoframe-addon-fresh for more info.
