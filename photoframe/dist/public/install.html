@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhotoFrame - Installazione Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .step {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .step h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-number {
+            background: rgba(255, 255, 255, 0.3);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            position: relative;
+            overflow-x: auto;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .copy-btn.copied {
+            background: #4CAF50;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #fff;
+        }
+        
+        .warning-box {
+            background: rgba(255, 152, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 PhotoFrame Screensaver Card</h1>
+        <p class="subtitle">Installazione per Home Assistant</p>
+        
+        <div class="step">
+            <h2><span class="step-number">1</span> Aggiungi Risorsa in Home Assistant</h2>
+            <p>Apri <strong>File Editor</strong> e modifica <code>configuration.yaml</code>:</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this, 'code1')">Copia</button>
+                <pre id="code1">lovelace:
+  mode: storage
+  resources:
+    - url: /api/hassio_ingress/ADDON_SLUG/photoframe-screensaver-card.js
+      type: module</pre>
+            </div>
+            <div class="warning-box">
+                ⚠️ <strong>Sostituisci <code>ADDON_SLUG</code></strong> con lo slug del tuo addon (es: <code>c193b561_photoframe-beta</code>).<br>
+                Puoi trovare lo slug nell'URL quando apri il panel dell'addon.
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2><span class="step-number">2</span> Metodo Alternativo (Download Locale)</h2>
+            <p>Se preferisci, puoi scaricare la card e metterla in <code>/config/www/</code>:</p>
+            <a href="/download/photoframe-screensaver-card.js" class="download-btn" download>
+                ⬇️ Scarica photoframe-screensaver-card.js
+            </a>
+            <p style="margin-top: 15px;">Poi usa questo URL nella risorsa:</p>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this, 'code2')">Copia</button>
+                <pre id="code2">lovelace:
+  mode: storage
+  resources:
+    - url: /local/photoframe-screensaver-card.js
+      type: module</pre>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2><span class="step-number">3</span> Riavvia Home Assistant</h2>
+            <p>Vai su <strong>Impostazioni → Sistema → Riavvia</strong></p>
+        </div>
+        
+        <div class="step">
+            <h2><span class="step-number">4</span> Svuota Cache Browser</h2>
+            <p>Premi <strong>CTRL + SHIFT + DEL</strong> e cancella tutta la cache.</p>
+        </div>
+        
+        <div class="step">
+            <h2><span class="step-number">5</span> Aggiungi Card alla Dashboard</h2>
+            <ul>
+                <li>Vai alla Dashboard</li>
+                <li>Clicca <strong>Modifica Dashboard</strong></li>
+                <li>Clicca <strong>Aggiungi Card</strong></li>
+                <li>Cerca <strong>"PhotoFrame Screensaver Card"</strong></li>
+                <li>Configura con l'editor visuale</li>
+                <li>Salva</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <strong>✅ Vantaggi Metodo Ingress (Metodo 1):</strong>
+            <ul>
+                <li>Funziona sia in rete locale che da remoto (Nabu Casa Cloud)</li>
+                <li>Nessuna configurazione IP o porta</li>
+                <li>Aggiornamenti automatici quando l'addon viene aggiornato</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <strong>📋 Configurazione Card:</strong>
+            <ul>
+                <li><strong>Altezza:</strong> 250-600px (regolabile in Layout editor)</li>
+                <li><strong>Timeout:</strong> 30-300 secondi prima di andare fullscreen</li>
+                <li><strong>Effetti:</strong> 13 transizioni disponibili + Mix casuale</li>
+                <li><strong>Adattamento:</strong> Cover (foto sempre a schermo intero)</li>
+            </ul>
+        </div>
+        
+        <div class="step">
+            <h2>🔗 Link Utili</h2>
+            <ul>
+                <li><a href="/" target="_blank">Apri PhotoFrame App</a></li>
+                <li><a href="/photoframe-screensaver-card.js" target="_blank">Visualizza Card (raw)</a></li>
+                <li><a href="https://github.com/EdisonACDC/photoframe-addon" target="_blank">Repository GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        function copyCode(button, codeId) {
+            const code = document.getElementById(codeId).textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✓ Copiato!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copia';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        // Auto-detect addon slug from current URL
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlPath = window.location.pathname;
+            const match = urlPath.match(/\/api\/hassio_ingress\/([^\/]+)/);
+            
+            if (match) {
+                const slug = match[1];
+                const code1 = document.getElementById('code1');
+                code1.textContent = code1.textContent.replace('ADDON_SLUG', slug);
+            }
+        });
+    </script>
+</body>
+</html>
