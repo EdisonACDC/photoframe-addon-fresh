@@ -1,0 +1,30 @@
+{
+  "name": "PhotoFrame",
+  "version": "1.0.1",
+  "slug": "photoframe-fresh",
+  "description": "Digital photo frame with slideshow for Home Assistant",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "startup": "application",
+  "init": false,
+  "boot": "auto",
+  "ports": {
+    "5000/tcp": 5000,
+    "5443/tcp": 5443
+  },
+  "ports_description": {
+    "5000/tcp": "HTTP web interface",
+    "5443/tcp": "HTTPS web interface"
+  },
+  "ingress": true,
+  "ingress_port": 5000,
+  "panel_icon": "mdi:image-multiple",
+  "options": {
+    "max_files": 50,
+    "max_size_mb": 10
+  },
+  "schema": {
+    "max_files": "int(1,200)?",
+    "max_size_mb": "int(1,50)?"
+  },
+  "image": "ghcr.io/edsonacdc/{arch}-addon-photoframe-fresh"
+}
