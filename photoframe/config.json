@@ -25,6 +25,5 @@
   "schema": {
     "max_files": "int(1,200)?",
     "max_size_mb": "int(1,50)?"
-  },
-  "image": "ghcr.io/edsonacdc/{arch}-addon-photoframe-fresh"
+  }
 }
